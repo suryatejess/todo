@@ -63,6 +63,20 @@ app.get("/show/:id", async (req, res) => {
   res.render("showSingle", { todo });
 });
 
+// Assuming you're using Mongoose with MongoDB
+app.patch("/todo/:id", async (req, res) => {
+  const todoId = req.params.id;
+  const { completed } = req.body;
+
+  try {
+    // Update the completed status of the todo item
+    await Todo.findByIdAndUpdate(todoId, { completed: completed });
+    res.json({ success: true });
+  } catch (error) {
+    res.status(500).json({ success: false, message: "Failed to update todo" });
+  }
+});
+
 // Add a new route to delete a To-Do
 // Add a new route to update a To-Do
 

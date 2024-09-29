@@ -10,9 +10,39 @@
     <ul>
       <% for (let i = 0; i < todos.length; i++) { %>
       <li>
-        <a href="/show/<%= todos[i]._id %>"><%= todos[i].title %></a>
+        <!-- Checkbox with completed status -->
+        <input type="checkbox" id="todo-<%= todos[i]._id %>" <%=
+        todos[i].completed ? 'checked' : '' %> onchange="updateCompletion('<%=
+        todos[i]._id %>', this.checked)" />
+        <label for="todo-<%= todos[i]._id %>">
+          <a href="/show/<%= todos[i]._id %>"><%= todos[i].title %></a>
+        </label>
       </li>
       <% } %>
     </ul>
+
+    <script>
+      // JavaScript function to send a PATCH request when checkbox is toggled
+      function updateCompletion(todoId, isCompleted) {
+        fetch(`/todo/${todoId}`, {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ completed: isCompleted }), // Send the updated 'completed' status
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.success) {
+              console.log("Todo updated successfully");
+            } else {
+              console.error("Failed to update todo");
+            }
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+      }
+    </script>
   </body>
 </html>
