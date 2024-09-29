@@ -3,12 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home</title>
+    <title>Show Single</title>
   </head>
   <body>
-    <h1>Welcome to Home Page</h1>
-    <a href="/new">Create New To Do</a>
+    <h1><%= todo.title %></h1>
     <br />
-    <a href="/show">Show all To Dos</a>
+    <h2><%= new Date(todo.deadline).toDateString() %></h2>
   </body>
 </html>

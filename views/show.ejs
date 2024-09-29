@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>All ToDo</title>
+  </head>
+  <body>
+    <h1>All the To Do</h1>
+    <ul>
+      <% for (let i = 0; i < todos.length; i++) { %>
+      <li>
+        <a href="/show/<%= todos[i]._id %>"><%= todos[i].title %></a>
+      </li>
+      <% } %>
+    </ul>
+  </body>
+</html>

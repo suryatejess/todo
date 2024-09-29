@@ -50,6 +50,22 @@ app.post("/new", async (req, res) => {
   //   res.redirect("/"); // Redirect back to the main page or another route
 });
 
+// Add a new route to display all the To-Dos
+app.get("/show", async (req, res) => {
+  const todos = await Todo.find({});
+  res.render("show", { todos });
+});
+
+// Add a new route to display a single To-Do
+app.get("/show/:id", async (req, res) => {
+  const { id } = req.params;
+  const todo = await Todo.findById(id);
+  res.render("showSingle", { todo });
+});
+
+// Add a new route to delete a To-Do
+// Add a new route to update a To-Do
+
 app.listen(port, () => {
   console.log("Server is running on port 3000");
 });
