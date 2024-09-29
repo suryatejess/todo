@@ -78,6 +78,17 @@ app.patch("/todo/:id", async (req, res) => {
 });
 
 // Add a new route to delete a To-Do
+app.delete("/todo/:id", async (req, res) => {
+  const todoId = req.params.id;
+
+  try {
+    // Delete the todo item
+    await Todo.findByIdAndDelete(todoId);
+    res.json({ success: true });
+  } catch (error) {
+    res.status(500).json({ success: false, message: "Failed to delete todo" });
+  }
+});
 // Add a new route to update a To-Do
 
 app.listen(port, () => {

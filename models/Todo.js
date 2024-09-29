@@ -8,7 +8,7 @@ const Todo = new Schema({
   },
   deadline: {
     type: Date,
-    required: true,
+    // required: true,
   },
   completed: {
     type: Boolean,
